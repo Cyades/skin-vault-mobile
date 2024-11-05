@@ -8,30 +8,64 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Skin Vault',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSwatch(
-              primarySwatch: Colors.deepPurple,
-        ).copyWith(secondary: Colors.deepPurple[400]),
+        colorScheme: ColorScheme(
+          brightness: Brightness.light,
+          primary: Color(0xFF1e293b),      // Warna biru tua dari navbar
+          onPrimary: Colors.white,         // Warna teks pada primary
+          secondary: Color(0xFFfcd34d),    // Warna kuning dari logo
+          onSecondary: Color(0xFF1e293b),  // Warna teks pada secondary
+          error: Color(0xFFef4444),        // Warna merah dari tombol logout
+          onError: Colors.white,           // Warna teks pada error
+          background: Color(0xFF1e293b),   // Warna latar belakang
+          onBackground: Color(0xFF1e293b), // Warna teks pada background
+          surface: Colors.white,           // Warna permukaan kartu
+          onSurface: Color(0xFF1e293b),    // Warna teks pada surface
+        ),
+        
+        // Konfigurasi tambahan tema
+        appBarTheme: AppBarTheme(
+          backgroundColor: Color(0xFF1e293b),
+          foregroundColor: Colors.white,
+          elevation: 8,
+        ),
+        
+        // Konfigurasi kartu
+        cardTheme: CardTheme(
+          color: Colors.white,
+          elevation: 4,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        
+        // Konfigurasi tombol
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color(0xFFfcd34d),
+            foregroundColor: Color(0xFF1e293b),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
+        
+        // Konfigurasi teks
+        textTheme: TextTheme(
+          titleLarge: TextStyle(
+            color: Color(0xFFfcd34d),
+            fontWeight: FontWeight.bold,
+          ),
+          bodyLarge: TextStyle(
+            color: Color(0xFF1e293b),
+          ),
+        ),
+        
+        // Menggunakan Material 3
         useMaterial3: true,
       ),
       home: MyHomePage(),
