@@ -15,16 +15,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme(
           brightness: Brightness.light,
-          primary: Color(0xFF1e293b),      // Warna biru tua dari navbar
-          onPrimary: Colors.white,         // Warna teks pada primary
-          secondary: Color(0xFFfcd34d),    // Warna kuning dari logo
-          onSecondary: Color(0xFF1e293b),  // Warna teks pada secondary
-          error: Color(0xFFef4444),        // Warna merah dari tombol logout
-          onError: Colors.white,           // Warna teks pada error
-          background: Color(0xFF1e293b),   // Warna latar belakang
-          onBackground: Color(0xFF1e293b), // Warna teks pada background
-          surface: Colors.white,           // Warna permukaan kartu
-          onSurface: Color(0xFF1e293b),    // Warna teks pada surface
+          primary: Color(0xFF1e293b),      
+          onPrimary: Colors.white,         
+          secondary: Color(0xFFfcd34d),    
+          onSecondary: Color(0xFF1e293b),  
+          error: Color(0xFFef4444),        
+          onError: Colors.white,           
+          background: Color(0xFF212121),   
+          onBackground: Color(0xFF1e293b), 
+          surface: Colors.white,           
+          onSurface: Color(0xFF1e293b),    
         ),
         
         // Konfigurasi tambahan tema
