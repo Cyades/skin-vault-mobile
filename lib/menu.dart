@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 InfoCard(title: 'Class', content: className),
               ],
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Center(
               child: Column(
                 children: [
