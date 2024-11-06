@@ -11,9 +11,9 @@ class _MyHomePageState extends State<MyHomePage> {
   final String className = 'PBP F'; // Kelas
 
   final List<ItemHomepage> items = [
-    ItemHomepage("Lihat Skin", Icons.gps_fixed),
-    ItemHomepage("Tambah Skin", Icons.add),
-    ItemHomepage("Logout", Icons.logout),
+    ItemHomepage("Lihat Daftar Skin", Icons.gps_fixed, Colors.blue),
+    ItemHomepage("Tambah Skin", Icons.add, Colors.green),
+    ItemHomepage("Logout", Icons.logout, Colors.red),
   ];
 
   @override
@@ -111,8 +111,9 @@ class InfoCard extends StatelessWidget {
 class ItemHomepage {
   final String name;
   final IconData icon;
+  final Color color;
 
-  ItemHomepage(this.name, this.icon);
+  ItemHomepage(this.name, this.icon, this.color);
 }
 
 class ItemCard extends StatelessWidget {
@@ -123,7 +124,7 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Theme.of(context).colorScheme.primary,
+      color: item.color,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: () {

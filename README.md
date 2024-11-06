@@ -182,3 +182,21 @@ final MyWidget({Key? key}) // ❌ Error - constructor tidak bisa final
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.
 
 
+1. Awalnya, saya membuat proyek Flutter baru dengan perintah `flutter create skin_vault`. Kemudian, saya menata ulang struktur proyek dengan memindahkan konten file `main.dart` ke file terpisah, yaitu `menu.dart`. Langkah ini diambil untuk memisahkan logika dari berbagai komponen aplikasi agar lebih rapi dan mudah dipelihara.
+
+2. Saya mengubah judul aplikasi di `main.dart` menjadi "Skin Vault" Di file `menu.dart`, saya menambahkan widget stateless baru bernama `MyHomepage` untuk mengelola widget-widget lain yang akan digunakan di tampilan beranda.
+
+3. Saya membuat widget `InfoCard` untuk menampilkan informasi NPM, kelas, dan nama, dengan menggunakan widget `Card` dan `Text` dari Flutter. Selain itu, saya menambahkan widget `ItemCard` yang berfungsi sebagai tombol-tombol yang dapat ditekan. `ItemCard` menggunakan widget `InkWell` dengan ikon, teks yang relevan, serta properti `onTap` untuk menampilkan SnackBar saat tombol ditekan. Untuk mengatur isi setiap `ItemCard`, saya membuat kelas baru bernama `ItemHomepage` dengan tiga variabel: ikon, teks, dan warna. `ItemCard` menerima sebuah instance `ItemHomepage` agar isinya bisa disesuaikan.
+
+4. Saya membuat tiga tombol untuk "Lihat Daftar Skin", "Tambah Skin", dan "logout" masing-masing dengan warna biru, hijau, dan merah. Widget ItemCard dan `InfoCard` kemudian ditambahkan ke `MyHomepage` dan disusun dengan menggunakan `Row`, `Column`, dan `GridView`. Posisi elemen-elemen ini diatur dengan `Padding` serta properti-properti yang sesuai.
+
+5. Akhirnya, saya membuat repositori baru di GitHub dan melakukan add-commit-push.
+
+
+
+
+
+
+
+
+
