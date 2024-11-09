@@ -13,18 +13,210 @@ Hasil proyek dapat dilihat pada [link berikut](pcd).
 
 ### 1.  Apa kegunaan `const` di Flutter? Jelaskan apa keuntungan ketika menggunakan `const` pada kode Flutter. Kapan sebaiknya kita menggunakan `const`, dan kapan sebaiknya tidak digunakan?
 
+Di Flutter, `const` digunakan untuk membuat objek atau widget yang bersifat tetap (*immutable*) dan di-compile hanya sekali, sehingga meningkatkan efisiensi memori dan performa dengan mengurangi *rebuilds* dan penggunaan CPU. Sebaiknya gunakan `const` untuk elemen statis yang tidak berubah selama aplikasi berjalan, seperti teks atau ikon tetap, karena ini mencegah Flutter membuat instance baru setiap kali aplikasi di-rebuild. Namun, hindari `const` jika data dinamis atau state yang berubah diperlukan, seperti nilai yang bergantung pada input pengguna atau data dari API.
+
 ### 2. Jelaskan dan bandingkan penggunaan *Column* dan *Row* pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+
+Di Flutter, widget `Column` dan `Row` digunakan untuk mengatur tata letak widget secara vertikal dan horizontal. `Column` menyusun widget secara vertikal dari atas ke bawah, sementara `Row` menyusun widget secara horizontal dari kiri ke kanan. Kedua widget ini menerima daftar children, dan memiliki properti seperti `mainAxisAlignment` dan `crossAxisAlignment` untuk mengatur posisi dan jarak antar elemen di dalamnya.
+
+**Perbandingan**
+- **Arah Tata Letak**: `Column` untuk tata letak vertikal, `Row` untuk tata letak horizontal.
+- **Alignment & Spacing**: `mainAxisAlignment` mengatur penempatan sepanjang sumbu utama (`vertical` pada `Column` dan horizontal pada `Row`), sedangkan `crossAxisAlignment` mengatur penempatan pada sumbu sebaliknya.
+- **Constraint**: `Column` sering memerlukan scrolling jika konten lebih tinggi dari layar, sementara `Row` memerlukan scrolling horizontal jika lebarnya melebihi layar.
+
+**Contoh Implementasi**
+- **Column** – Menyusun teks dan ikon secara vertikal:
+    ```dart
+    Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+        Text('Hello'),
+        Icon(Icons.star, color: Colors.blue),
+        Text('Flutter'),
+    ],
+    )
+    ```
+- **Row** – Menyusun ikon dan teks secara horizontal:
+    ```dart
+    Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+        Icon(Icons.home, color: Colors.red),
+        Text('Home'),
+        Icon(Icons.settings, color: Colors.green),
+    ],
+    )
+    ```
+`Column` dan `Row` memudahkan pengaturan tata letak yang rapi dan fleksibel dengan penempatan elemen yang konsisten di Flutter.
 
 
 ### 3. Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
 
+Pada halaman form `SkinEntryFormPage`, terdapat tiga elemen input utama, yaitu:
+- **TextFormField** untuk Skin - digunakan untuk memasukkan nama skin.
+- **TextFormField** untuk Quality - digunakan untuk memasukkan kualitas skin.
+- **TextFormField** untuk Skin Quantity - digunakan untuk memasukkan jumlah skin, dan di sini memerlukan input angka.
+
+Selain ketiga elemen input ini, Flutter menyediakan berbagai elemen input lainnya yang tidak saya gunakan pada tugas ini, seperti:
+
+- **DropdownButtonFormField**: Elemen ini memungkinkan pengguna memilih satu opsi dari beberapa pilihan yang tersedia, yang bisa lebih efektif untuk input terbatas, seperti kualitas atau jenis skin.
+- **Checkbox**: Untuk input berupa pilihan yang bisa diaktifkan atau dinonaktifkan, seperti "setujui syarat dan ketentuan.
+- **Switch**: Mirip dengan `Checkbox`, tetapi dengan tampilan yang berbeda, berguna untuk pilihan aktif/nonaktif.
+- **Slider**: Untuk input nilai dalam rentang tertentu, misalnya untuk memilih jumlah dengan rentang tertentu atau menyesuaikan ukuran.
+- **DatePicker dan TimePicker**: Untuk input tanggal dan waktu.
+
+Dengan menggunakan elemen-elemen ini, aplikasi dapat memberikan pengalaman yang lebih intuitif kepada pengguna, terutama jika input yang diharapkan memiliki tipe data atau opsi yang spesifik.
+
 
 ### 4.  Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+
+Di Flutter, menerapkan tema secara konsisten bisa dilakukan dengan menggunakan `ThemeData` di dalam `MaterialApp`, yang memungkinkan pengaturan tema utama untuk seluruh aplikasi. Berikut adalah langkah-langkah umumnya:
+
+- **Buat `ThemeData` Kustom:**
+    - Tentukan warna-warna dasar, seperti warna utama (`primaryColor`), warna aksen (`accentColor`), dan warna latar belakang (`backgroundColor`).
+    - Elemen lainnya juga dapat diatur seperti `textTheme`, `buttonTheme`, dan `iconTheme`.
+
+- **Integrasikan ke `MaterialApp`:**
+    - Tambahkan `ThemeData` di dalam `theme` dan `darkTheme` (jika ada mode gelap) dari `MaterialApp`.
+        ```dart
+        ThemeData(
+        primaryColor: Colors.green,
+        accentColor: Colors.orange,
+        backgroundColor: Colors.white,
+        textTheme: TextTheme(
+            bodyText1: TextStyle(color: Colors.black),
+        ),
+        buttonTheme: ButtonThemeData(
+            buttonColor: Colors.green,
+            textTheme: ButtonTextTheme.primary,
+        ),
+        )
+        ```
+
+- **Gunakan `Theme.of(context)` Secara Konsisten:**
+    - Alih-alih menentukan warna dan gaya secara langsung, panggil `Theme.of(context)` pada widget yang memerlukan gaya khusus agar otomatis mengikuti tema yang telah ditetapkan.
+    - Misalnya: `color: Theme.of(context).primaryColor`.
+
+- **Pertimbangkan Sistem Mode Terang & Gelap:**
+    - Flutter mendukung mode terang dan gelap. Kamu bisa mengatur tema terang di `theme` dan tema gelap di `darkTheme`, dan biarkan aplikasi secara otomatis beralih sesuai preferensi pengguna.
+
+Saya belum menggunakan tema pada tugas kali ini, tetapi ke depannya saya akan menerapkan tema pada proyek ini dengan menggunakan tema yang sama seperti yang saya gunakan pada proyek sebelumnya, yakni bertema ***"Counter Strike 2"***.
 
 
 ### 5. Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
 
+Untuk menangani navigasi dalam aplikasi Flutter dengan banyak halaman, bisa menggunakan beberapa metode. Berikut adalah beberapa cara umum yang bisa dipakai:
 
+- **Navigator dengan Push dan Pop**
+
+    Flutter menyediakan `Navigator` yang dapat digunakan untuk berpindah antar halaman (screen) dengan menggunakan `push` untuk menambahkan halaman baru ke stack dan `pop` untuk kembali ke halaman sebelumnya.
+    ```dart
+    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => HalamanBaru()),
+    );
+
+    // Untuk kembali ke halaman sebelumnya
+    Navigator.pop(context);
+    ```
+
+- **Named Routes (Rute Bernama)**
+
+    Navigasi dapat dikelola dengan lebih terstruktur menggunakan named routes. Ini berguna jika aplikasi memiliki banyak halaman dan ingin mendeklarasikan rute secara terpisah.
+
+    Pertama, daftarkan rute di dalam `MaterialApp` atau `CupertinoApp`:
+    ```dart
+    void main() {
+    runApp(MaterialApp(
+        initialRoute: '/',
+        routes: {
+        '/': (context) => HalamanUtama(),
+        '/halamanBaru': (context) => HalamanBaru(),
+        },
+    ));
+    }
+    ```
+    Untuk menavigasi ke halaman lain, cukup gunakan nama rutenya:
+    ```dart
+    Navigator.pushNamed(context, '/halamanBaru');
+    ```
+
+- **Navigator 2.0 (Untuk Navigasi yang Lebih Kompleks)**
+
+    Jika aplikasi memiliki navigasi yang lebih kompleks atau membutuhkan kontrol lebih besar atas stack navigasi (misalnya dalam aplikasi dengan banyak halaman dinamis), dapat digunakan **Navigator 2.0**. Navigator ini memberi lebih banyak kontrol, seperti mendukung deep linking, back stack yang lebih fleksibel, dan kemampuan untuk menavigasi berdasarkan status aplikasi.
+
+    Contoh penggunaan **Navigator 2.0** dapat ditemukan pada dokumentasi Flutter terkait dengan **Router** dan **RouteInformationParser**.
+
+- **Bottom Navigation atau Tab Bar**
+
+    Jika aplikasi memiliki beberapa tab atau bagian utama yang bisa diakses dengan mudah, dapat digunakan **BottomNavigationBar** atau **TabBar** untuk mengelola navigasi antar halaman.
+    ```dart
+    class HalamanUtama extends StatefulWidget {
+    @override
+    _HalamanUtamaState createState() => _HalamanUtamaState();
+    }
+
+    class _HalamanUtamaState extends State<HalamanUtama> {
+    int _currentIndex = 0;
+
+    final List<Widget> _pages = [
+        Halaman1(),
+        Halaman2(),
+        Halaman3(),
+    ];
+
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+        body: _pages[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _currentIndex,
+            onTap: (index) {
+            setState(() {
+                _currentIndex = index;
+            });
+            },
+            items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+            BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: 'Profile'),
+            ],
+        ),
+        );
+    }
+    }
+    ```
+
+- **Drawer untuk Navigasi Samping**
+
+    Jika ingin menyediakan navigasi samping, dapat digunakan `Drawer`. Drawer akan muncul dari sisi kiri layar dengan menu navigasi yang bisa dipilih.
+    ```dart
+    Scaffold(
+    appBar: AppBar(title: Text('Aplikasi Saya')),
+    drawer: Drawer(
+        child: ListView(
+        children: <Widget>[
+            ListTile(
+            title: Text('Halaman 1'),
+            onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Halaman1()));
+            },
+            ),
+            ListTile(
+            title: Text('Halaman 2'),
+            onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Halaman2()));
+            },
+            ),
+        ],
+        ),
+    ),
+    body: HalamanUtama(),
+    );
+    ```
+Metode-metode ini dapat dipilih berdasarkan skenario yang ada dalam aplikasi Flutter.
 
 
 ## 📜 README Log History
