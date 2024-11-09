@@ -6,7 +6,7 @@
 Hasil proyek dapat dilihat pada [link berikut](pcd).
 
 ### Tugas Sebelumnya
-| [Tugas 7](#7️⃣-tugas-7) | [Tugas 8](#8️⃣-tugas-8) 
+| [Tugas 7](#tugas-7) | [Tugas 8](#tugas-8) 
 | - | - |
 
 ## Tugas 8
