@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:skin_vault/menu.dart';
+import 'package:skin_vault/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());

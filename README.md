@@ -6,8 +6,31 @@
 Hasil proyek dapat dilihat pada [link berikut](pcd).
 
 ### Tugas Sebelumnya
-| [Tugas 7](#7️⃣-tugas-7) |
-| - |
+| [Tugas 7](#7️⃣-tugas-7) | [Tugas 8](#8️⃣-tugas-8) 
+| - | - |
+
+## Tugas 8
+
+### 1.  Apa kegunaan `const` di Flutter? Jelaskan apa keuntungan ketika menggunakan `const` pada kode Flutter. Kapan sebaiknya kita menggunakan `const`, dan kapan sebaiknya tidak digunakan?
+
+### 2. Jelaskan dan bandingkan penggunaan *Column* dan *Row* pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+
+
+### 3. Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+
+
+### 4.  Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+
+
+### 5. Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+
+
+
+
+## 📜 README Log History
+
+<details>
+<summary><b>Tugas 7 (09/11/2024)</b></summary>
 
 ## Tugas 7
 
@@ -191,7 +214,7 @@ final MyWidget({Key? key}) // ❌ Error - constructor tidak bisa final
 4. Saya membuat tiga tombol untuk "Lihat Daftar Skin", "Tambah Skin", dan "logout" masing-masing dengan warna biru, hijau, dan merah. Widget ItemCard dan `InfoCard` kemudian ditambahkan ke `MyHomepage` dan disusun dengan menggunakan `Row`, `Column`, dan `GridView`. Posisi elemen-elemen ini diatur dengan `Padding` serta properti-properti yang sesuai.
 
 5. Akhirnya, saya membuat repositori baru di GitHub dan melakukan add-commit-push.
-
+<details>
 
 
 
