@@ -30,7 +30,7 @@ Hasil proyek dapat dilihat pada [link berikut](pcd).
 ## 📜 README Log History
 
 <details>
-<summary><b>Tugas 7 (09/11/2024)</b></summary>
+<summary><b>Tugas 7 (06/11/2024)</b></summary>
 
 ## Tugas 7
 
