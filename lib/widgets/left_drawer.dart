@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skin_vault/screens/list_skinentry.dart';
 import 'package:skin_vault/screens/menu.dart';
 import 'package:skin_vault/screens/skinentry_form.dart';
 
@@ -60,6 +61,17 @@ class LeftDrawer extends StatelessWidget {
                 MaterialPageRoute(
                     builder: (context) => const SkinEntryFormPage(),
                 ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('Daftar Skin'),
+            onTap: () {
+                // Route menu ke halaman skin
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SkinEntryPage()),
+                );
             },
           ),
         ],
