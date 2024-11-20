@@ -20,47 +20,110 @@ class SkinDetailPage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.primary,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Skin Name
             Text(
-              "Skin Name: ${skinEntry.fields.name}",
+              skinEntry.fields.name,
               style: const TextStyle(
-                fontSize: 24.0,
+                fontSize: 26.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 16),
+            
+            // Weapon
+            Text(
+              "Weapon: ${skinEntry.fields.weapon}",
+              style: const TextStyle(fontSize: 18.0),
+            ),
+            const SizedBox(height: 8),
+            
+            // Exterior
+            Text(
+              "Exterior: ${skinEntry.fields.exterior}",
+              style: const TextStyle(fontSize: 18.0),
+            ),
+            const SizedBox(height: 8),
+            
+            // Category
             Text(
               "Category: ${skinEntry.fields.category}",
               style: const TextStyle(fontSize: 18.0),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
+            
+            // Quality
             Text(
               "Quality: ${skinEntry.fields.quality}",
               style: const TextStyle(fontSize: 18.0),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
+            
+            // Price
+            Text(
+              "Price: \$${skinEntry.fields.price}",
+              style: const TextStyle(
+                fontSize: 18.0,
+                color: Colors.green,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            
+            // Quantity Available
             Text(
               "Quantity Available: ${skinEntry.fields.quantity}",
               style: const TextStyle(fontSize: 18.0),
             ),
-            const SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () {
-                // Logika tambahan dapat ditambahkan di sini
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Action coming soon!')),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primary,
+            const SizedBox(height: 16),
+            
+            // Description
+            Text(
+              "Description:",
+              style: const TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
               ),
-              child: const Text(
-                "Add to Cart",
-                style: TextStyle(color: Colors.white),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              skinEntry.fields.description,
+              style: const TextStyle(fontSize: 16.0),
+            ),
+            const SizedBox(height: 32),
+            
+            // Add to Cart Button
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "${skinEntry.fields.name} has been added to the cart!",
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 12,
+                  ),
+                ),
+                child: const Text(
+                  "Add to Cart",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                  ),
+                ),
               ),
             ),
           ],

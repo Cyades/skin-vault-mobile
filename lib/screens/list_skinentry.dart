@@ -1,10 +1,10 @@
-import 'dart:math';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:skin_vault/models/skin_entry.dart';
-import 'package:skin_vault/widgets/left_drawer.dart';
 import 'package:skin_vault/screens/skin_detail_page.dart';
+import 'package:skin_vault/widgets/left_drawer.dart';
 
 class SkinEntryPage extends StatefulWidget {
   const SkinEntryPage({super.key});
@@ -16,15 +16,19 @@ class SkinEntryPage extends StatefulWidget {
 class _SkinEntryPageState extends State<SkinEntryPage> {
   Future<List<SkinEntry>> fetchSkin(CookieRequest request) async {
     final response = await request.get('http://127.0.0.1:8000/json/');
-    var data = response;
 
     List<SkinEntry> listSkin = [];
-    for (var d in data) {
+    for (var d in response) {
       if (d != null) {
-        listSkin.add(SkinEntry.fromJson(d["fields"]));
+        // Amankan data untuk mencegah potensi XSS
+        final sanitizedFields = Fields.fromJson(d["fields"]);
+        listSkin.add(SkinEntry(
+          model: d["model"],
+          pk: d["pk"],
+          fields: sanitizedFields,
+        ));
       }
     }
-    print(listSkin);
     return listSkin;
   }
 
@@ -46,30 +50,35 @@ class _SkinEntryPageState extends State<SkinEntryPage> {
       drawer: const LeftDrawer(),
       body: FutureBuilder(
         future: fetchSkin(request),
-        builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.data == null) {
+        builder: (context, AsyncSnapshot<List<SkinEntry>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
-          } else {
-            if (snapshot.data.length == 0) {
-              return const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 20),
-                    const Text(
-                      'Sorry, no skins are available yet!',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text(
+                'Error: ${snapshot.error}',
+                style: const TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
                 ),
-              );
-            } else {
-              return ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (_, index) => Card(
+              ),
+            );
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(
+              child: Text(
+                'Sorry, no skins are available yet!',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            );
+          } else {
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (_, index) {
+                final skin = snapshot.data![index];
+                return Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -81,7 +90,7 @@ class _SkinEntryPageState extends State<SkinEntryPage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => SkinDetailPage(
-                            skinEntry: snapshot.data![index],
+                            skinEntry: skin,
                           ),
                         ),
                       );
@@ -89,29 +98,30 @@ class _SkinEntryPageState extends State<SkinEntryPage> {
                     child: Container(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "${snapshot.data![index].fields.Skin}",
+                            skin.fields.name,
                             style: const TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           const SizedBox(height: 10),
-                          Text("${snapshot.data![index].fields.skin}"),
+                          Text("Weapon: ${skin.fields.weapon}"),
+                          Text("Exterior: ${skin.fields.exterior}"),
+                          Text("Category: ${skin.fields.category}"),
+                          Text("Quality: ${skin.fields.quality}"),
                           const SizedBox(height: 10),
-                          Text("${snapshot.data![index].fields.quality}"),
-                          const SizedBox(height: 10),
-                          Text("Quantity: ${snapshot.data![index].fields.quantity}"),
+                          Text("Price: \$${skin.fields.price}"),
+                          Text("Quantity: ${skin.fields.quantity}"),
                         ],
                       ),
                     ),
                   ),
-                ),
-              );
-            }
+                );
+              },
+            );
           }
         },
       ),
