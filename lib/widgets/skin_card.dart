@@ -47,7 +47,7 @@ Widget build(BuildContext context) {
             Navigator.push(context,
               MaterialPageRoute(builder: (context) => const SkinEntryFormPage()));
           }
-          else if (item.name == "Lihat Skin") {
+          else if (item.name == "Lihat Daftar Skin") {
             Navigator.push(context,
                 MaterialPageRoute(
                     builder: (context) => const SkinEntryPage()
